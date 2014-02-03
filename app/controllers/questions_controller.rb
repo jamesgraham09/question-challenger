@@ -29,11 +29,13 @@ class QuestionsController < ApplicationController
 
   # PATCH/PUT /questions/1
   def update
+    redirect_to question_path(@question)
   end
 
   # DELETE /questions/1
   def destroy
     @question.destroy
+    redirect_to '/'
   end
 
   def randomize
@@ -42,7 +44,7 @@ class QuestionsController < ApplicationController
   end
 
   def answer
-    if params[:Answer] == @question.answer.text
+    if params[:Answer] == @question.answer
       flash[:notice] = 'Correct'
     else
       flash[:notice] = 'Wrong Answer'
@@ -56,6 +58,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:text)
+    params.require(:question).permit(:text, :answer, :wrongs)
   end
 end

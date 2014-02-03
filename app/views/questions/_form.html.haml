@@ -9,5 +9,13 @@
   .field
     = f.label :text
     = f.text_area :text
+    %br
+    = f.label :answer
+    = f.text_field :answer
+    %br
+    optional (fill in if multiple choice, comma-seperated):
+    %br
+    = f.label 'wrong answers'
+    = f.text_field :wrongs
   .actions
     = f.submit 'Save'
