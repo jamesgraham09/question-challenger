@@ -7,6 +7,13 @@
 = link_to 'Edit', edit_question_path(@question)
 \|
 = link_to 'Back', questions_path
-= form_tag answer_question_path do
-  = text_field_tag 'Answer'
-  = submit_tag 'Submit'
+
+- if @question.answers.count > 1
+  - @question.answers.each do |answer|
+    = form_tag answer_question_path do
+      = hidden_field_tag('Answer', answer.text)
+      = button_tag(answer.text)
+- else
+  = form_tag answer_question_path do
+    = text_field_tag 'Answer'
+    = submit_tag 'Submit'

@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
   end
 
   def answer
-    if params[:Answer] == @question.answers.first.text
+    if params[:Answer] == @question.answer.text
       flash[:notice] = 'Correct'
     else
       flash[:notice] = 'Wrong Answer'
