@@ -42,7 +42,11 @@ class QuestionsController < ApplicationController
   end
 
   def answer
-    flash[:notice] = 'Correct' if params[:Answer] == @question.answers.first.text
+    if params[:Answer] == @question.answers.first.text
+      flash[:notice] = 'Correct'
+    else
+      flash[:notice] = 'Wrong Answer'
+    end
     redirect_to action: :randomize
   end
 
