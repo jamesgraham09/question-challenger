@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+
+  before_action :get_question, only: [:show, :edit, :update, :destroy, :answer]
 
   # GET /questions
   def index
@@ -22,6 +23,8 @@ class QuestionsController < ApplicationController
   # POST /questions
   def create
     @question = Question.new(question_params)
+    @question.save
+    redirect_to question_path(@question)
   end
 
   # PATCH/PUT /questions/1
@@ -35,10 +38,16 @@ class QuestionsController < ApplicationController
 
   def randomize
     @question = Question.all.sample
+    redirect_to question_path(@question)
+  end
+
+  def answer
+    flash[:notice] = 'Correct' if params[:Answer] == @question.answers.first.text
+    redirect_to action: :randomize
   end
 
   private
-  def set_question
+  def get_question
     @question = Question.find(params[:id])
   end
 

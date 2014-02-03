@@ -24,6 +24,7 @@ gem 'thin' # use thin t'make websockets work
 gem 'websocket-rails'
 gem 'haml-rails'
 gem 'devise'
+gem 'foreigner'
 #gem 'foundation-rails'
 #gem 'foundation_rails_helper'
 
